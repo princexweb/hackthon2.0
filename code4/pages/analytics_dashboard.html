@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analytics Dashboard - StudyFlow AI</title>
+    <link rel="stylesheet" href="../css/main.css" />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fstudyflow5586back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-white shadow-subtle border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-8 w-8 text-primary" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L20 10L28 10L22 16L24 24L16 20L8 24L10 16L4 10L12 10L16 2Z"/>
+                            <circle cx="16" cy="16" r="3" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h1 class="text-lg sm:text-xl font-semibold text-text-primary font-accent">StudyFlow AI</h1>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="analytics_dashboard.html" class="text-primary font-medium">Analytics</a>
+                    <a href="resource_library.html" class="text-text-secondary hover:text-primary transition-colors duration-200">Resources</a>
+                    <a href="notifications_center.html" class="text-text-secondary hover:text-primary transition-colors duration-200">Notifications</a>
+                    <a href="profile_settings.html" class="text-text-secondary hover:text-primary transition-colors duration-200">Settings</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-text-secondary hover:text-primary p-2 rounded-md transition-colors duration-200">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                            <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6m0 12L6 6"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="md:hidden hidden border-t border-border">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-white">
+                    <a href="analytics_dashboard.html" class="text-primary font-medium block px-3 py-2 rounded-md text-sm bg-primary-50">Analytics</a>
+                    <a href="resource_library.html" class="text-text-secondary hover:text-primary hover:bg-gray-50 block px-3 py-2 rounded-md text-sm transition-colors duration-200">Resources</a>
+                    <a href="notifications_center.html" class="text-text-secondary hover:text-primary hover:bg-gray-50 block px-3 py-2 rounded-md text-sm transition-colors duration-200">Notifications</a>
+                    <a href="profile_settings.html" class="text-text-secondary hover:text-primary hover:bg-gray-50 block px-3 py-2 rounded-md text-sm transition-colors duration-200">Settings</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
+        <!-- Page Header -->
+        <div class="mb-6 sm:mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-text-primary font-accent">Analytics Dashboard</h1>
+                    <p class="mt-2 text-sm sm:text-base text-text-secondary">Comprehensive insights into your learning patterns and productivity metrics</p>
+                </div>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:space-x-4">
+                    <select class="form-input w-full sm:w-auto min-w-32">
+                        <option>Last 30 days</option>
+                        <option>Last 7 days</option>
+                        <option>Last 90 days</option>
+                        <option>This year</option>
+                    </select>
+                    <button class="btn-primary w-full sm:w-auto">
+                        <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Export Report
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Metrics Overview -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
+            <div class="card">
+                <div class="flex items-center">
+                    <div class="p-3 bg-primary-100 rounded-lg">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
+                    </div>
+                    <div class="ml-4 min-w-0">
+                        <p class="text-sm font-medium text-text-secondary">Study Hours</p>
+                        <p class="text-xl sm:text-2xl font-bold text-text-primary">127.5</p>
+                        <p class="text-xs text-secondary truncate">+12% from last month</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="flex items-center">
+                    <div class="p-3 bg-secondary-100 rounded-lg">
+                        <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div class="ml-4 min-w-0">
+                        <p class="text-sm font-medium text-text-secondary">Goals Completed</p>
+                        <p class="text-xl sm:text-2xl font-bold text-text-primary">24</p>
+                        <p class="text-xs text-secondary truncate">+8 this month</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="flex items-center">
+                    <div class="p-3 bg-accent-100 rounded-lg">
+                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div class="ml-4 min-w-0">
+                        <p class="text-sm font-medium text-text-secondary">Avg Focus Time</p>
+                        <p class="text-xl sm:text-2xl font-bold text-text-primary">52m</p>
+                        <p class="text-xs text-secondary truncate">+7m improvement</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="flex items-center">
+                    <div class="p-3 bg-warning-100 rounded-lg">
+                        <svg class="w-6 h-6 text-warning-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                        </svg>
+                    </div>
+                    <div class="ml-4 min-w-0">
+                        <p class="text-sm font-medium text-text-secondary">Streak Days</p>
+                        <p class="text-xl sm:text-2xl font-bold text-text-primary">18</p>
+                        <p class="text-xs text-accent truncate">Personal best!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Analytics Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
+            <!-- Study Time Trends -->
+            <div class="lg:col-span-2 card">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+                    <h2 class="text-lg sm:text-xl font-semibold text-text-primary">Study Time Trends</h2>
+                    <div class="flex items-center space-x-2 overflow-x-auto">
+                        <button class="text-sm text-text-secondary hover:text-primary px-3 py-1 rounded-lg bg-primary-50 whitespace-nowrap">Daily</button>
+                        <button class="text-sm text-text-secondary hover:text-primary px-3 py-1 rounded-lg whitespace-nowrap">Weekly</button>
+                        <button class="text-sm text-text-secondary hover:text-primary px-3 py-1 rounded-lg whitespace-nowrap">Monthly</button>
+                    </div>
+                </div>
+
+                <!-- Chart Placeholder -->
+                <div class="h-64 sm:h-80 bg-surface rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+                    <svg class="w-full h-full p-4 sm:p-8" viewBox="0 0 800 300" fill="none">
+                        <!-- Grid lines -->
+                        <defs>
+                            <pattern id="grid" width="40" height="30" patternUnits="userSpaceOnUse">
+                                <path d="M 40 0 L 0 0 0 30" fill="none" stroke="#E2E8F0" stroke-width="1"/>
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#grid)"/>
+                        
+                        <!-- Study time line chart -->
+                        <polyline fill="none" stroke="#4A90E2" stroke-width="3" points="50,250 90,200 130,180 170,160 210,140 250,120 290,100 330,90 370,85 410,80 450,75 490,70 530,65 570,60 610,55 650,50 690,45 730,40"/>
+                        
+                        <!-- Data points -->
+                        <circle cx="50" cy="250" r="4" fill="#4A90E2"/>
+                        <circle cx="170" cy="160" r="4" fill="#4A90E2"/>
+                        <circle cx="290" cy="100" r="4" fill="#4A90E2"/>
+                        <circle cx="410" cy="80" r="4" fill="#4A90E2"/>
+                        <circle cx="530" cy="65" r="4" fill="#4A90E2"/>
+                        <circle cx="650" cy="50" r="4" fill="#4A90E2"/>
+                        <circle cx="730" cy="40" r="4" fill="#4A90E2"/>
+                        
+                        <!-- Labels -->
+                        <text x="50" y="280" text-anchor="middle" class="text-xs fill-current text-text-secondary">Sep 1</text>
+                        <text x="170" y="280" text-anchor="middle" class="text-xs fill-current text-text-secondary">Sep 5</text>
+                        <text x="290" y="280" text-anchor="middle" class="text-xs fill-current text-text-secondary">Sep 10</text>
+                        <text x="410" y="280" text-anchor="middle" class="text-xs fill-current text-text-secondary">Sep 15</text>
+                        <text x="530" y="280" text-anchor="middle" class="text-xs fill-current text-text-secondary">Sep 20</text>
+                        <text x="650" y="280" text-anchor="middle" class="text-xs fill-current text-text-secondary">Sep 25</text>
+                        <text x="730" y="280" text-anchor="middle" class="text-xs fill-current text-text-secondary">Today</text>
+                    </svg>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs sm:text-sm text-text-secondary gap-2">
+                    <span>Peak performance: 4.2 hours on Sep 22</span>
+                    <span>Average: 3.1 hours/day</span>
+                </div>
+            </div>
+
+            <!-- Learning Pattern Insights -->
+            <div class="card">
+                <h2 class="text-lg sm:text-xl font-semibold text-text-primary mb-6">Learning Patterns</h2>
+                
+                <div class="space-y-6">
+                    <!-- Optimal Study Time -->
+                    <div>
+                        <h3 class="text-sm font-medium text-text-primary mb-3">Optimal Study Time</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-text-secondary">Morning (6-10 AM)</span>
+                                <div class="flex items-center">
+                                    <div class="w-12 sm:w-16 h-2 bg-surface rounded-full mr-2">
+                                        <div class="w-10 sm:w-14 h-2 bg-primary rounded-full"></div>
+                                    </div>
+                                    <span class="text-xs text-text-secondary">87%</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-text-secondary">Afternoon (2-6 PM)</span>
+                                <div class="flex items-center">
+                                    <div class="w-12 sm:w-16 h-2 bg-surface rounded-full mr-2">
+                                        <div class="w-8 sm:w-10 h-2 bg-secondary rounded-full"></div>
+                                    </div>
+                                    <span class="text-xs text-text-secondary">65%</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-text-secondary">Evening (7-11 PM)</span>
+                                <div class="flex items-center">
+                                    <div class="w-12 sm:w-16 h-2 bg-surface rounded-full mr-2">
+                                        <div class="w-6 sm:w-8 h-2 bg-accent rounded-full"></div>
+                                    </div>
+                                    <span class="text-xs text-text-secondary">52%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subject Performance -->
+                    <div>
+                        <h3 class="text-sm font-medium text-text-primary mb-3">Subject Performance</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-primary-50 rounded-lg">
+                                <div class="flex items-center min-w-0">
+                                    <div class="w-3 h-3 bg-primary rounded-full mr-3 flex-shrink-0"></div>
+                                    <span class="text-sm font-medium truncate">Data Structures</span>
+                                </div>
+                                <span class="text-sm font-semibold text-primary">92%</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-secondary-50 rounded-lg">
+                                <div class="flex items-center min-w-0">
+                                    <div class="w-3 h-3 bg-secondary rounded-full mr-3 flex-shrink-0"></div>
+                                    <span class="text-sm font-medium truncate">Machine Learning</span>
+                                </div>
+                                <span class="text-sm font-semibold text-secondary">85%</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-accent-50 rounded-lg">
+                                <div class="flex items-center min-w-0">
+                                    <div class="w-3 h-3 bg-accent rounded-full mr-3 flex-shrink-0"></div>
+                                    <span class="text-sm font-medium truncate">Statistics</span>
+                                </div>
+                                <span class="text-sm font-semibold text-accent">78%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Focus Quality -->
+                    <div>
+                        <h3 class="text-sm font-medium text-text-primary mb-3">Focus Quality</h3>
+                        <div class="flex items-center justify-center">
+                            <div class="relative w-20 h-20 sm:w-24 sm:h-24">
+                                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" stroke="#F1F3F5" stroke-width="8" fill="none"/>
+                                    <circle cx="50" cy="50" r="40" stroke="#4A90E2" stroke-width="8" fill="none" stroke-dasharray="251.2" stroke-dashoffset="62.8"/>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-base sm:text-lg font-bold text-text-primary">75%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-text-secondary text-center mt-2">Above average focus retention</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Productivity Metrics & Comparisons -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
+            <!-- Productivity Breakdown -->
+            <div class="card">
+                <h2 class="text-lg sm:text-xl font-semibold text-text-primary mb-6">Productivity Breakdown</h2>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-3 sm:p-4 bg-surface rounded-lg">
+                        <div class="flex items-center min-w-0">
+                            <div class="p-2 bg-primary-100 rounded-lg mr-3 flex-shrink-0">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-sm font-medium text-text-primary truncate">Active Study Time</p>
+                                <p class="text-xs text-text-secondary truncate">Deep focus sessions</p>
+                            </div>
+                        </div>
+                        <div class="text-right flex-shrink-0">
+                            <p class="text-base sm:text-lg font-bold text-text-primary">89.2h</p>
+                            <p class="text-xs text-secondary">+15% vs last month</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 sm:p-4 bg-surface rounded-lg">
+                        <div class="flex items-center min-w-0">
+                            <div class="p-2 bg-secondary-100 rounded-lg mr-3 flex-shrink-0">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-sm font-medium text-text-primary truncate">Task Completion Rate</p>
+                                <p class="text-xs text-text-secondary truncate">Goals achieved on time</p>
+                            </div>
+                        </div>
+                        <div class="text-right flex-shrink-0">
+                            <p class="text-base sm:text-lg font-bold text-text-primary">87%</p>
+                            <p class="text-xs text-secondary">+3% improvement</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 sm:p-4 bg-surface rounded-lg">
+                        <div class="flex items-center min-w-0">
+                            <div class="p-2 bg-accent-100 rounded-lg mr-3 flex-shrink-0">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-sm font-medium text-text-primary truncate">Retention Score</p>
+                                <p class="text-xs text-text-secondary truncate">Knowledge retention rate</p>
+                            </div>
+                        </div>
+                        <div class="text-right flex-shrink-0">
+                            <p class="text-base sm:text-lg font-bold text-text-primary">82%</p>
+                            <p class="text-xs text-accent">Excellent retention</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 sm:p-4 bg-surface rounded-lg">
+                        <div class="flex items-center min-w-0">
+                            <div class="p-2 bg-warning-100 rounded-lg mr-3 flex-shrink-0">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-warning-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-sm font-medium text-text-primary truncate">Consistency Score</p>
+                                <p class="text-xs text-text-secondary truncate">Daily study regularity</p>
+                            </div>
+                        </div>
+                        <div class="text-right flex-shrink-0">
+                            <p class="text-base sm:text-lg font-bold text-text-primary">91%</p>
+                            <p class="text-xs text-secondary">Very consistent</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Comparison -->
+            <div class="card">
+                <h2 class="text-lg sm:text-xl font-semibold text-text-primary mb-6">Community Comparison</h2>
+                
+                <div class="space-y-6">
+                    <div class="text-center p-4 bg-primary-50 rounded-lg">
+                        <p class="text-xl sm:text-2xl font-bold text-primary">Top 15%</p>
+                        <p class="text-sm text-text-secondary">Your overall ranking</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-text-primary">Study Hours</span>
+                                <span class="text-xs sm:text-sm text-text-secondary">You vs Community</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="flex-1 h-3 bg-surface rounded-full">
+                                    <div class="h-3 bg-primary rounded-full" style="width: 85%"></div>
+                                </div>
+                                <span class="text-xs text-primary font-medium">85th percentile</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-text-primary">Goal Completion</span>
+                                <span class="text-xs sm:text-sm text-text-secondary">You vs Community</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="flex-1 h-3 bg-surface rounded-full">
+                                    <div class="h-3 bg-secondary rounded-full" style="width: 78%"></div>
+                                </div>
+                                <span class="text-xs text-secondary font-medium">78th percentile</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-text-primary">Streak Consistency</span>
+                                <span class="text-xs sm:text-sm text-text-secondary">You vs Community</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="flex-1 h-3 bg-surface rounded-full">
+                                    <div class="h-3 bg-accent rounded-full" style="width: 92%"></div>
+                                </div>
+                                <span class="text-xs text-accent font-medium">92nd percentile</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-border">
+                        <h3 class="text-sm font-medium text-text-primary mb-3">Similar Learners</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-text-secondary truncate">Computer Science Students</span>
+                                <span class="text-primary font-medium">Top 12%</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-text-secondary truncate">Your Age Group (22-25)</span>
+                                <span class="text-secondary font-medium">Top 18%</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-text-secondary truncate">Evening Studiers</span>
+                                <span class="text-accent font-medium">Top 8%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Predictive Analytics & Recommendations -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+            <!-- Predictive Insights -->
+            <div class="lg:col-span-2 card">
+                <h2 class="text-lg sm:text-xl font-semibold text-text-primary mb-6">Predictive Analytics & Recommendations</h2>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- Optimal Schedule -->
+                    <div class="p-4 bg-primary-50 rounded-lg border border-primary-100">
+                        <div class="flex items-center mb-3">
+                            <div class="p-2 bg-primary-100 rounded-lg mr-3">
+                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-sm font-semibold text-text-primary">Optimal Study Schedule</h3>
+                        </div>
+                        <p class="text-sm text-text-secondary mb-3">Based on your peak performance patterns:</p>
+                        <ul class="text-sm space-y-1">
+                            <li class="flex items-center">
+                                <div class="w-2 h-2 bg-primary rounded-full mr-2 flex-shrink-0"></div>
+                                <span>7:00 AM - 9:30 AM (Deep Focus)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-2 h-2 bg-primary rounded-full mr-2 flex-shrink-0"></div>
+                                <span>2:00 PM - 4:00 PM (Review)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-2 h-2 bg-primary rounded-full mr-2 flex-shrink-0"></div>
+                                <span>8:00 PM - 9:00 PM (Practice)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Goal Timeline -->
+                    <div class="p-4 bg-secondary-50 rounded-lg border border-secondary-100">
+                        <div class="flex items-center mb-3">
+                            <div class="p-2 bg-secondary-100 rounded-lg mr-3">
+                                <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-sm font-semibold text-text-primary">Goal Timeline Prediction</h3>
+                        </div>
+                        <p class="text-sm text-text-secondary mb-3">At current pace, you'll complete:</p>
+                        <ul class="text-sm space-y-1">
+                            <li class="flex items-center">
+                                <div class="w-2 h-2 bg-secondary rounded-full mr-2 flex-shrink-0"></div>
+                                <span>Data Structures: Oct 15</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-2 h-2 bg-secondary rounded-full mr-2 flex-shrink-0"></div>
+                                <span>ML Project: Nov 2</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-2 h-2 bg-secondary rounded-full mr-2 flex-shrink-0"></div>
+                                <span>Statistics: Nov 20</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Performance Optimization -->
+                    <div class="p-4 bg-accent-50 rounded-lg border border-accent-100">
+                        <div class="flex items-center mb-3">
+                            <div class="p-2 bg-accent-100 rounded-lg mr-3">
+                                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-sm font-semibold text-text-primary">Performance Boost</h3>
+                        </div>
+                        <p class="text-sm text-text-secondary mb-3">Increase efficiency by 23%:</p>
+                        <ul class="text-sm space-y-1">
+                            <li class="flex items-center">
+                                <div class="w-2 h-2 bg-accent rounded-full mr-2 flex-shrink-0"></div>
+                                <span>Take 10-min breaks every hour</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-2 h-2 bg-accent rounded-full mr-2 flex-shrink-0"></div>
+                                <span>Use Pomodoro for complex topics</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-2 h-2 bg-accent rounded-full mr-2 flex-shrink-0"></div>
+                                <span>Review notes within 24 hours</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Stress Management -->
+                    <div class="p-4 bg-warning-50 rounded-lg border border-warning-100">
+                        <div class="flex items-center mb-3">
+                            <div class="p-2 bg-warning-100 rounded-lg mr-3">
+                                <svg class="w-5 h-5 text-warning-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-sm font-semibold text-text-primary">Wellness Alert</h3>
+                        </div>
+                        <p class="text-sm text-text-secondary mb-3">Maintain balance with:</p>
+                        <ul class="text-sm space-y-1">
+                            <li class="flex items-center">
+                                <div class="w-2 h-2 bg-warning-600 rounded-full mr-2 flex-shrink-0"></div>
+                                <span>Schedule rest days</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-2 h-2 bg-warning-600 rounded-full mr-2 flex-shrink-0"></div>
+                                <span>Limit sessions to 3 hours</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-2 h-2 bg-warning-600 rounded-full mr-2 flex-shrink-0"></div>
+                                <span>Include physical activity</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Export & Sharing -->
+            <div class="card">
+                <h2 class="text-lg sm:text-xl font-semibold text-text-primary mb-6">Export & Share</h2>
+                
+                <div class="space-y-4">
+                    <button class="w-full btn-primary text-left">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            <div class="min-w-0">
+                                <p class="font-medium">Download PDF Report</p>
+                                <p class="text-sm opacity-80">Comprehensive analytics summary</p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="w-full btn-secondary text-left">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
+                            </svg>
+                            <div class="min-w-0">
+                                <p class="font-medium">Share with Mentor</p>
+                                <p class="text-sm opacity-80">Send progress to advisor</p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="w-full btn-accent text-left">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                            <div class="min-w-0">
+                                <p class="font-medium">Export Data</p>
+                                <p class="text-sm opacity-80">CSV format for analysis</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-border">
+                    <h3 class="text-sm font-medium text-text-primary mb-3">Quick Stats</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-text-secondary">Total Sessions</span>
+                            <span class="font-medium">156</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-text-secondary">Avg Session Length</span>
+                            <span class="font-medium">52 minutes</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-text-secondary">Best Streak</span>
+                            <span class="font-medium">23 days</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-text-secondary">Efficiency Score</span>
+                            <span class="font-medium text-primary">87%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-border mt-8 sm:mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div class="flex items-center">
+                    <svg class="h-6 w-6 text-primary mr-2" viewBox="0 0 32 32" fill="currentColor">
+                        <path d="M16 2L20 10L28 10L22 16L24 24L16 20L8 24L10 16L4 10L12 10L16 2Z"/>
+                        <circle cx="16" cy="16" r="3" fill="white"/>
+                    </svg>
+                    <span class="text-text-secondary text-sm">© 2025 StudyFlow AI. All Rights Reserved.</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="javascript:void(0)" class="text-text-secondary hover:text-primary text-sm">Privacy</a>
+                    <a href="javascript:void(0)" class="text-text-secondary hover:text-primary text-sm">Terms</a>
+                    <a href="javascript:void(0)" class="text-text-secondary hover:text-primary text-sm">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) { // md breakpoint
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
